@@ -1,0 +1,60 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+
+public class RangeCount {
+
+	// Loop the Array and check whether each element is prasent in given rang i..e
+	// x,y
+	// and maintain count;
+	public static int countInRange(int profits[], int n, int x, int y) {
+		int count = 0;
+		for (int i = 0; i < n; i++) {
+			if (profits[i] >= x && profits[i] <= y) {
+				count++;
+			}
+		}
+		return count;
+
+	}
+
+	public static void main(String[] args) throws IOException {
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));//Just Tried with Buffer Reader
+		// Reading as a String and converting it to integer
+		String number = br.readLine();
+		int num = Integer.parseInt(number);
+		String list = br.readLine();
+		String profit[] = list.split(" ");
+		int profits[] = new int[num];
+		for (int i = 0; i < profit.length; i++) {
+			profits[i] = Integer.parseInt(profit[i]);
+		}
+
+		String queries = br.readLine();
+		Arrays.sort(profits);
+		for (int i = 0; i < Integer.parseInt(queries); i++) {
+			String input = br.readLine();
+			String arr[] = input.split(" ");
+			System.out.print(RangeCount.countInRange(profits, num, Integer.parseInt(arr[0]), Integer.parseInt(arr[1])));
+		}
+	}
+}
+
+//Sample input and output with Explnation
+//Sample Input
+5   -->No of ELemnts
+23 13 10 2 33 -->Array
+5 -->No of Queries
+7 11 
+10 30
+1 10
+2 40
+5 6
+
+//Sample output
+1 -->1 element is prasent in b/w 7 11 -->10
+3 --> 3 elements prasent in b/w 10 30 -->10,13,23
+2 --> 2 elements prasent in b/w 1 10 -->2,10
+5 --> 5 elements prasent in b/w 5 6 -->2,10,13,23,33
