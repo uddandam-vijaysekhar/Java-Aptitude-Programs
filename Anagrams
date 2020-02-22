@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class Anagarm {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String input = sc.nextLine();
+		String arr[] = input.split(" ");
+		int count[] = new int[26];
+
+		arr[0] = arr[0].toLowerCase();
+		arr[1] = arr[1].toLowerCase();
+
+		for (int i = 0; i <= arr[0].length() - 1; i++) {
+			int asci_val = (int) arr[0].charAt(i);
+			if (97 <= asci_val && asci_val <= 122) {
+				count[asci_val - 97] += 1;
+			}
+		}
+
+		for (int i = 0; i <= arr[1].length() - 1; i++) {
+			int asci_val = (int) arr[1].charAt(i);
+			if (97 <= asci_val && asci_val <= 122) {
+				count[asci_val - 97] -= 1;
+			}
+		}
+
+		int flag = 0;
+		for (int i = 0; i < 26; i++) {
+			if (count[i] != 0) {
+				flag = 1;
+				break;
+			}
+		}
+
+		if (flag == 0)
+			System.out.print("true");
+		else
+			System.out.print("false");
+
+	}
+}
